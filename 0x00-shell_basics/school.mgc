@@ -1,2 +1,4 @@
-0 search/16 school file containing "school"
-!:mime text/x-school
+#!/bin/bash
+0 string SCHOOL School data
+!:mime School
+echo '0 string SCHOOL School data!:mime School' >> school.mgc
