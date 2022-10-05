@@ -1,2 +1,2 @@
-#!/bin/bash
-grep -rnw /* -e SCHOOL
+0 search/16 school file containing "school"
+!:mime text/x-school
