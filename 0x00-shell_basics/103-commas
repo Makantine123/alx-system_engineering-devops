@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -a | -d
+ls -a |paste -d
