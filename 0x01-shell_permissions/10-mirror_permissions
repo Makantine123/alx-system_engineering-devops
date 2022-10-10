@@ -1,0 +1,2 @@
+#!/bib/bash
+chmod --reference=olleh hello
