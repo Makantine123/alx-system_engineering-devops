@@ -1,2 +1,2 @@
 #2-pati!/bin/bash
-find $PATH -type d -print| wc -l
+echo $PATH | tr ":" "\n" | wc -l
