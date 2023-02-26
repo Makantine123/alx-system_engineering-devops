@@ -2,11 +2,14 @@
 # Loops displays "Best School";"bad, good" luck
 i=0
 while [ $i -lt 10 ]
-then
+do
     if [ "$i" -eq 4 ]
+    then
         echo "bad luck"
     elif [ "$i" -eq 8 ]
+    then
         echo "good luck"
     else
         echo "Best School"
     fi
+done
