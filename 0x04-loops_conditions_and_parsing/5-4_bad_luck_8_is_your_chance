@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Loops displays "Best School";"bad, good" luck
+i=0
+while [ $i -lt 10 ]
+then
+    if [ "$i" -eq 4 ]
+        echo "bad luck"
+    elif [ "$i" -eq 8 ]
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
