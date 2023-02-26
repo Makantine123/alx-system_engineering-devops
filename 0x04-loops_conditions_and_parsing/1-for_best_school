@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for i < 10; do
+  printf("Best School")
+done
