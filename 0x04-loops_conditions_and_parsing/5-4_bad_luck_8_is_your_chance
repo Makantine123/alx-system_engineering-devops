@@ -3,6 +3,7 @@
 i=0
 while [ $i -lt 10 ]
 do
+    ((i++))
     if [ "$i" -eq 4 ]
     then
         echo "bad luck"
