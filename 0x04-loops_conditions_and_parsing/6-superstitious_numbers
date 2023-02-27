@@ -1,18 +1,16 @@
 #!/usr/bin/env bash
-# Loops displays "Best School";"bad, good" luck
+# Loops displays bad luck <country>
 i=0
 while [ $i -lt 20 ]
 do
+    echo $i
     ((i++))
-    echo "$i"
-    if [ "$i" -eq 4 ]
-    then
-        echo "bad luck from China"
-    elif [ "$i" -eq 9 ]
-    then
-        echo "bad luck from Japan"
-    elif [ "$i" -eq 17 ]
-    then
-        echo "bad luck from Italy"
-    fi
+    case "$i" in
+      4) echo bad luck from China
+      ;;
+      9) echo bad luck from Japan
+      ;;
+      17) echo bad luck from Italy
+      ;;
+    esac
 done
