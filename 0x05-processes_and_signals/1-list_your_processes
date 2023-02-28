@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 # Bash script that displays a list of currently running processes
-ps -u
+# ps: PIDs for the processes currently on the system
+# a: Select all processes
+# u: Sell all processes on terminal, including those of other users
+# x: Select processes without controlling ttys
+# -H: Show process hoerarchy (forest)
+ps aux -H
