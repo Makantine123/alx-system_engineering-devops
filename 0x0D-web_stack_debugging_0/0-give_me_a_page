@@ -1,0 +1,4 @@
+#!/bin/bash
+# Script that gets Apache to run on the container
+# The page returns Hello Holberton
+service apache2 start
