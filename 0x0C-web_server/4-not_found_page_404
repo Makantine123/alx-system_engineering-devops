@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Script contains error page 404 for server
+
 sudo apt-get update
 sudo apt-get install -y nginx
 
 echo "Ceci n'est pas une page" >> /var/www/html/error_404.html
 sed -i '39i\error_page 404 /error_404.html;' /etc/nginx/sites-available/default
 
-service nginx start
+sudo service nginx start
