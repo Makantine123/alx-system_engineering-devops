@@ -8,3 +8,9 @@ sudo apt-get install nginx -y
 sudo sed -i 's/.*listen 80 default_server;/\tlisten 80 default_server;/g' /etc/nginx/sites-available/default
 sudo service nginx restart
 curl -s localhost | grep "Hello World!" > /dev/null
+
+if [ $? -eq 0 ]; then
+    echo "Ng"
+else
+    echo ""
+fi
