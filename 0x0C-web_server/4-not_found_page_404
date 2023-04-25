@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Script contains error page 404 for server
 sudo apt-get update
 sudo apt-get install -y nginx
 
