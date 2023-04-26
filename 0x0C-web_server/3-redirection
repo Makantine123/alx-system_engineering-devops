@@ -4,7 +4,7 @@
 
 sudo apt-get update
 sudo apt-get install nginx -y
-# echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" >> /var/www/html/index.html
 # sudo service nginx restart
 
 echo "301 Moved Permanently" >> /var/www/html/index.html
