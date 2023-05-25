@@ -8,9 +8,10 @@ his/her TODO list progress
 import requests
 from sys import argv
 
-if __name__ == "__main__":
-    userID = argv[1]
-    url = "https://jsonplaceholder.typicode.com/"
+url = "https://jsonplaceholder.typicode.com/"
+
+
+def check_task(userID):
     user = requests.get(url + "users/{}".format(userID)).json()
     todos = requests.get(url + "todos", params={"userId": userID}).json()
     name = user.get("name")
@@ -22,3 +23,7 @@ if __name__ == "__main__":
           format(name, len(completed), len(todos)))
     for title in completed:
         print("\t{}".format(title))
+
+
+if __name__ == "__main__":
+    check_task(int(argv[1]))
