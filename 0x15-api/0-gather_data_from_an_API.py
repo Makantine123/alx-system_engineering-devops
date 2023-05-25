@@ -8,10 +8,9 @@ his/her TODO list progress
 import requests
 from sys import argv
 
-url = "https://jsonplaceholder.typicode.com/"
-
 
 def check_task(userID):
+    url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(userID)).json()
     todos = requests.get(url + "todos", params={"userId": userID}).json()
     name = user.get("name")
