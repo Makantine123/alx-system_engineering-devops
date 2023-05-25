@@ -26,11 +26,9 @@ def export_json(userID):
         }
         user_data[userID].append(user_task)
 
-    jdata = json.dumps(user_data)
-
     file_name = userID + ".json"
     with open(file_name, "w") as file:
-        file.write(jdata)
+        json.dump(user_data, file)
 
 
 if __name__ == "__main__":
