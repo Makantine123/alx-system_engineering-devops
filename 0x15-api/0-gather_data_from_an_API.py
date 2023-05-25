@@ -21,7 +21,7 @@ def check_task(userID):
     print("Employee {} is done with tasks({}/{}):".
           format(name, len(completed), len(todos)))
     for title in completed:
-        print("\t{}".format(title))
+        print("\t {}".format(title))
 
 
 if __name__ == "__main__":
