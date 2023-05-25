@@ -15,7 +15,6 @@ def export_json(userID):
     todos = requests.get(url + "todos", params={"userId": userID}).json()
 
     file_name = userID + ".json"
-    data = []
 
     user_data = {userID: []}
 
