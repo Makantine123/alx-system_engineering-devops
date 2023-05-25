@@ -3,7 +3,6 @@
 Script to export data in the JSON format
 """
 
-import csv
 import json
 import requests
 from sys import argv
@@ -13,17 +12,15 @@ def export_csv(userID):
     url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(userID)).json()
     todos = requests.get(url + "todos", params={"userId": userID}).json()
-    name = user.get("username")
 
     file_name = userID + ".json"
-
     data = []
 
     for task in todos:
         user_task = {
             "task": task["title"],
             "completed": task["completed"],
-            "username": name,
+            "username": user["username"],
         }
         data.append(user_task)
 
