@@ -17,7 +17,7 @@ def export_csv(userID):
 
     file_name = userID + ".json"
 
-    user_data = {userID: []}
+    data = []
 
     for task in todos:
         user_task = {
@@ -25,13 +25,13 @@ def export_csv(userID):
             "completed": task["completed"],
             "username": name,
         }
-        user_data[userID].append(user_task)
+        data.append(user_task)
 
-    jdata = json.dumps(user_data)
+    user_data = {str(user["id"]): data}
 
     file_name = userID + ".json"
-    with open(file_name, "w") as json_file:
-        json_file.write(jdata)
+    with open(file_name, "w") as file:
+        json.dump(user_data, file)
 
 
 if __name__ == "__main__":
