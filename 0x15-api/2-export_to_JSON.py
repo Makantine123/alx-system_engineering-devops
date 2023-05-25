@@ -16,10 +16,10 @@ def export_json(userID):
 
     file_name = userID + ".json"
     with open(file_name, "w") as file:
-        for t in todos:
-            json.dump({userID: [{"task": t["title"],
-                                 "completed": t["completed"],
-                                 "username": user["username"]}]}, file)
+        json.dump({userID: [{"task": t.get("title"),
+                            "completed": t.get("completed"),
+                             "username": user.get("username")}
+                            for t in todos]}, file)
 
 
 if __name__ == "__main__":
