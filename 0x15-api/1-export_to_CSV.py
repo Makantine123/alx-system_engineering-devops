@@ -20,7 +20,8 @@ if __name__ == "__main__":
     file_name = userID + ".csv"
     with open(file_name, "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
-        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
+                         "TASK_TITLE"])
         for task in todos:
             task_id = task["id"]
             task_title = task["title"]
