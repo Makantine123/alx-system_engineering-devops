@@ -9,13 +9,11 @@ import requests
 from sys import argv
 
 
-if __name__ == "__main__":
-    userID = argv[1]
+def export_csv(userID):
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users", params={"id": userID}).json()
+    user = requests.get(url + "users/{}".format(userID)).json()
     todos = requests.get(url + "todos", params={"userId": userID}).json()
-    name = user["name"]
-    completed = []
+    name = user.get("username")
 
     file_name = userID + ".csv"
     with open(file_name, "w", newline="") as csv_file:
@@ -23,7 +21,10 @@ if __name__ == "__main__":
         writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
                          "TASK_TITLE"])
         for task in todos:
-            task_id = task["id"]
-            task_title = task["title"]
-            task_completed = str(task["completed"])
+            task_title = task.get("title")
+            task_completed = str(task.get("completed"))
             writer.writerow([userID, name, task_completed, task_title])
+
+
+if __name__ == "__main__":
+    export_csv(argv[1])
