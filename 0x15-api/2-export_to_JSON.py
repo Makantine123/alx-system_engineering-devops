@@ -16,7 +16,7 @@ def export_json(userID):
 
     file_name = userID + ".json"
 
-    user_data = {userID: []}
+    user_data = {str(userID): []}
 
     for task in todos:
         user_task = {
