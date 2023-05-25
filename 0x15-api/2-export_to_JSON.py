@@ -8,7 +8,7 @@ import requests
 from sys import argv
 
 
-def export_csv(userID):
+def export_json(userID):
     url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(userID)).json()
     todos = requests.get(url + "todos", params={"userId": userID}).json()
@@ -32,4 +32,4 @@ def export_csv(userID):
 
 
 if __name__ == "__main__":
-    export_csv(argv[1])
+    export_json(argv[1])
