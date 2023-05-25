@@ -17,7 +17,7 @@ def export_csv(userID):
 
     file_name = userID + ".csv"
     with open(file_name, "w", newline="") as csv_file:
-        writer = csv.writer(csv_file)
+        writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
                          "TASK_TITLE"])
         for task in todos:
