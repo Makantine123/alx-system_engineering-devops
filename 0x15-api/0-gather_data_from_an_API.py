@@ -21,4 +21,3 @@ if __name__ == "__main__":
                                                          len(todos)))
     for title in completed:
         print("\t{}".format(title))
-
