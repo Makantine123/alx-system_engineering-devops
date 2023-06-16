@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Script runs whoami command under specific user
 username="$1"
-sudo -u  "$username" "whoami"
+sudo -u  "$username" whoami
