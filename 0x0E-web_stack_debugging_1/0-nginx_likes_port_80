@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# Web Stack Debugging 1
-sudo sed -i "s/sites-enabled/default/" /etc/nginx/sites-enabled/default
+#Nginx must be running, and listening on port 80
+sudo sed -i "s/sites-enabled/sites-available/" /etc/nginx/nginx.conf
 sudo service nginx restart
