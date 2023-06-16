@@ -1,7 +1,9 @@
 #!/usr/bin/env bash                                                             
 # This script that accepts one argument whoami                                       
 # It runs the 'whoami' command under the user passed as argument
-if [[ $# -ne 1 ]]; then
-	exit 1
+if [[ $# -eq 1 ]]
+then
+	sudo -u "$1" whoami
+else
+	whoami
 fi
-sudo -u "$1" whoami
