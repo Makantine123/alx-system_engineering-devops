@@ -6,4 +6,4 @@ efault
 chown -R nginx:nginx /etc/nginx
 chmod 700 /etc/nginx/nginx.conf
 service nginx reload
-service nginx restart
+sudo -u nginx service nginx restart
