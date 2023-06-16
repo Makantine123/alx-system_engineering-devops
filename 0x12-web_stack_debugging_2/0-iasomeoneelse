@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Script runs whoami command under specific user
+username="$1"
+sudo -c "whoami" "$username"
