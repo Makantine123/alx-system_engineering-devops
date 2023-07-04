@@ -41,6 +41,7 @@ frontend localserv
 backend my_backend
         mode http
         balance roundrobin
+        http-request redirect scheme https code 301 if !{ ssl_fc }
         server 162560-web-01 3.84.237.43:80
         server 162560-web-02 100.25.180.143:80
 
