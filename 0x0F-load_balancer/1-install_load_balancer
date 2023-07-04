@@ -5,8 +5,8 @@
 # Ensures that HAproxy is managed via init
 
 sudo apt-get update
-sudo apt-get -y install HAproxy
-sed -i "11i/ENABLED=1;" /etc/default/haproxy
+sudo apt-get -y install haproxy
+sed -i "s/ENABLED=0/ENABLED=1;" /etc/default/haproxy
 echo "
 frontend localserv
 	bind *:80
