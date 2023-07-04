@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Installs HAproxy
+# Cofigures it to send trafic to web-01 and web-02
+# Distribution requests using roundrobin algorithm
+# Ensures that HAproxy is managed via init
+
+sudo apt-get update
+sudo apt-get -y install HAproxy
+sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+echo "
+frontend localserv
+	bind *:80
+	mode http
+	default_backend my_backend
+
+backend my_backend
+	mode http
+	balance roundrobin
+	server 162560-web-01 3.84.237.43:80
+	server 162560-web-02 100.25.180.143:80
+" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
