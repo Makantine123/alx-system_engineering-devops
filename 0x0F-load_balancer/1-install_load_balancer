@@ -6,7 +6,7 @@
 
 sudo apt-get update
 sudo apt-get -y install HAproxy
-sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+sed -i "11i/ENABLED=1;" /etc/default/haproxy
 echo "
 frontend localserv
 	bind *:80
