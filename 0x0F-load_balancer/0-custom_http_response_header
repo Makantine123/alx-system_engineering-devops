@@ -2,5 +2,9 @@
 # Script configures nginx so that HTTP response contains custom header
 # for web-01 and web-02
 # name of the custom HTTP header is X-Served-by
+
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo service nginx start
 sudo sed -i "11i\\\iadd_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.conf
 sudo service nginx restart
