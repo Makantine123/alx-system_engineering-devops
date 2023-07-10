@@ -32,9 +32,12 @@ def count_words(subreddit, word_list, after=None, word_counts=None):
     except (requests.exceptions.RequestException, ValueError):
         return None
 
-    sorted_counts = sorted(word_counts.items(), key=lambda x: (-x[1], x[0].lower()))
-    word_counts = dict(sorted_counts)
+    word_counts_combined = Counter()
     for word in word_list:
-        count = word_counts.get(word.lower(), 0)
+        count = sum(word_counts[word.lower()] for word in word_counts if word.lower() == word)
         if count > 0:
-            print(f"{word.lower()}: {count}")
+            word_counts_combined[word.lower()] += count
+
+    sorted_counts = sorted(word_counts_combined.items(), key=lambda x: (-x[1], x[0].lower()))
+    for word, count in sorted_counts:
+        print(f"{word}: {count}")
