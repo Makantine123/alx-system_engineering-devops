@@ -37,7 +37,7 @@ def print_word_counts(word_counts):
         print(f"{word}: {count}")
 
 
-def count_words_ptiny(subreddit, word_list):
+def count_words(subreddit, word_list):
     """Count words"""
     word_counts = count_words(subreddit, word_list)
     print_word_counts(word_counts)
