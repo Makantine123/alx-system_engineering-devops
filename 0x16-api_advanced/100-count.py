@@ -2,47 +2,36 @@
 """Module contains script that use Reddit API"""
 
 import requests
-from collections import Counter
 
 
-def count_words(subreddit, word_list, after=None, word_counts=None):
+def count_words(subreddit, word_list, after=None, count_dict=None):
     """Count words using recursion"""
-    if word_counts is None:
-        word_counts = Counter()
+    if count_dict is None:
+        count_dict = {}
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {'User-Agent': 'Custom User Agent'}
-    params = {'limit': 100, 'after': after}
+    base_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    headers = {"User-Agent": "Mozilla/5.0"}
 
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=5)
-        response.raise_for_status()
+    params = {"limit": 100}
+    if after:
+        params["after"] = after
+
+    response = requests.get(base_url, headers=headers, params=params)
+
+    if response.status_code == 200:
         data = response.json()
-        if 'data' in data and 'children' in data['data']:
-            posts = data['data']['children']
-            titles = [post['data']['title'] for post in posts]
-            for title in titles:
-                words = title.lower().split()
-                word_counts.update(words)
-            after = data['data']['after']
-            if after is not None:
-                return count_words(subreddit, word_list, after, word_counts)
-        else:
-            return None
-    except (requests.exceptions.RequestException, ValueError):
-        return None
+        posts = data.get("data", {}).get("children", [])
 
-    final_counts = Counter()
-    for word in word_list:
-        lowercase_word = word.lower()
-        count = sum(
-            word_counts[word.lower()]
-            for word in word_counts
-            if word.lower() == lowercase_word
-        )
-        if count > 0:
-            final_counts[lowercase_word] += count
+        for post in posts:
+            title = post.get("data", {}).get("title", "").lower()
+            for word in word_list:
+                if title.count(word) > 0:
+                    count_dict[word] = count_dict.get(word, 0) + title.count(word)
 
-    sorted_counts = sorted(final_counts.items(), key=lambda x: (-x[1], x[0].lower()))
+        after = data.get("data", {}).get("after")
+        if after:
+            return count_words(subreddit, word_list, after, count_dict)
+
+    sorted_counts = sorted(count_dict.items(), key=lambda x: (-x[1], x[0]))
     for word, count in sorted_counts:
         print(f"{word}: {count}")
