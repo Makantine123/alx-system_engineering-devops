@@ -34,10 +34,15 @@ def count_words(subreddit, word_list, after=None, word_counts=None):
 
     final_counts = Counter()
     for word in word_list:
-        final_counts[word.lower()] = word_counts[word.lower()]
-
-    sorted_counts = sorted(final_counts.items(), key=lambda x: (-x[1], x[0]
-                                                                .lower()))
-    for word, count in sorted_counts:
+        lowercase_word = word.lower()
+        count = sum(
+            word_counts[word.lower()]
+            for word in word_counts
+            if word.lower() == lowercase_word
+        )
         if count > 0:
-            print(f"{word}: {count}")
+            final_counts[lowercase_word] += count
+
+    sorted_counts = sorted(final_counts.items(), key=lambda x: (-x[1], x[0].lower()))
+    for word, count in sorted_counts:
+        print(f"{word}: {count}")
