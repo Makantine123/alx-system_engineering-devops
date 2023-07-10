@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Script contain module to query reddit api"""
 
 import requests
 
