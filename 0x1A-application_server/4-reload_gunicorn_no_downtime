@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 # Gracefully updates gunicorn workers
-ps aux | grep gunicorn | awk '{ print $2 }' | xargs kill -HUP
+pkill -HUP gunicorn
