@@ -1,18 +1,18 @@
 [Unit]
-Description=Gunicorn instance to serve web application
+Description=gunicorn daemon for hbnb
 After=network.target
 
 [Service]
 User=ubuntu
 Group=ubuntu
+
 WorkingDirectory=/home/ubuntu/AirBnB_clone_v4
-ExecStart=/usr/bin/python3 /home/ubuntu/AirBnB_clone_4/web_dynamic/2-hbnb.py
-Restart=always
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=gunicorn
-Environment=LOGFILE=/tmp/airbnb-access.log
+ExecStart=/usr/bin/gunicorn \
+          --error-logfile /tmp/airbnb-error.log \
+          --access-logfile /tmp/airbnb-access.log \
+          --bind unix:/0.0.0.0:5003 \
+          --workers 3 \
+          web_dynamic.2-hbnb:app
 
 [Install]
 WantedBy=multi-user.target
-
