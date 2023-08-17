@@ -1,0 +1,48 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	location /hbnb_static/ {
+		alias /data/web_static/current/;
+	}
+	location /airbnb-onepage/ {
+		proxy_pass http://127.0.0.1:5000;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+	}
+	location /airbnb-dynamic/number_odd_or_even/ {
+		proxy_pass http://127.0.0.1:5001/number_odd_or_even/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+	}
+	location /api/ {
+		include proxy_params;
+		proxy_pass http://127.0.0.1:5002/api/;
+		proxy_set_header Host $host;
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_set_header X-Forwarded-Proto $scheme;
+	}
+	location /static {
+		alias /home/ubuntu/AirBnB_clone_v4/web_dynamic/static/;
+	}
+
+	root /var/www/html;
+
+	# Add index.php to the list if you are using PHP
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	add_header X-Served-By 162560-web-01;
+
+	location / {
+		try_files $uri $uri/ =404;
+		proxy_pass http://127.0.0.1:5003/2-hbnb;
+	}
+
+}
